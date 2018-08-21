@@ -54,7 +54,6 @@ function initHome() {
 	LOCK = false;
 	PACMAN_DEAD = false;
 	
-
 	$("#panel").hide();
 	$("#home").show();
 	$("#home h3 em").append( " - " + new Date().getFullYear() );
