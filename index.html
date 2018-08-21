@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+
+<html>
+
+	<head>
+
+
+
+		<link rel="stylesheet" type="text/css" href="css/pacman.css" />
+		<link rel="stylesheet" type="text/css" href="css/pacman-home.css" />
+	
+		<script type="text/javascript" src="js/jquery.js"></script>
+		<!--<script type="text/javascript" src="js/jquery-mobile.js"></script>-->
+		<script type="text/javascript" src="js/jquery-buzz.js"></script>
+		
+		<script type="text/javascript" src="js/game.js"></script>
+		<script type="text/javascript" src="js/tools.js"></script>
+		<script type="text/javascript" src="js/board.js"></script>
+		<script type="text/javascript" src="js/paths.js"></script>
+		<script type="text/javascript" src="js/bubbles.js"></script>
+		<script type="text/javascript" src="js/fruits.js"></script>
+		<script type="text/javascript" src="js/pacman.js"></script>
+		<script type="text/javascript" src="js/ghosts.js"></script>
+		<script type="text/javascript" src="js/home.js"></script>
+		<script type="text/javascript" src="js/sound.js"></script>
+		
+
+<canvas id="myCanvas" width="32" height="16" style=""></canvas>
+
+<script>
+var canvas = document.getElementById("myCanvas");
+var ctx = canvas.getContext("2d");
+
+ctx.fillStyle = "green";
+ctx.fillRect(0,0,32,16);
+
+var centerX = canvas.width / 2;
+var centerY = canvas.height / 2;
+var radius = 4;
+
+ctx.beginPath();
+ctx.arc(centerX, centerY, radius, 0, 2 * Math.PI, false);
+ctx.fillStyle = 'white';
+ctx.fill();
+//ctx.lineWidth = 4;
+//ctx.strokeStyle = '#003300';
+//ctx.stroke();
+
+ctx.font = "9px Arial";
+ctx.fillStyle = "black";
+ctx.fillText("$",13,11);
+
+</script>
+
+<canvas id="myCanvas2" width="32" height="16" style=""></canvas>
+
+<script>
+var canvas = document.getElementById("myCanvas2");
+var ctx = canvas.getContext("2d");
+
+ctx.fillStyle = "white";
+ctx.fillRect(5,0,8,16);
+
+ctx.fillStyle = "white";
+ctx.fillRect(0,6,18,18);
+
+ctx.fillStyle = "black";
+ctx.fillRect(2,9,4,4);
+
+ctx.fillStyle = "black";
+ctx.fillRect(12,9,4,4);
+
+ctx.fillStyle = "black";
+ctx.fillRect(7,9,4,8);
+
+ctx.fillStyle = "white";
+ctx.fillRect(22,6,2,10);
+
+ctx.fillStyle = "blue";
+ctx.fillRect(22,0,10,3);
+
+ctx.fillStyle = "white";
+ctx.fillRect(22,3,10,3);
+
+ctx.fillStyle = "blue";
+ctx.fillRect(22,6,10,3);
+
+var centerX = 27;
+var centerY = 5;
+var radius = 3;
+
+ctx.beginPath();
+ctx.arc(centerX, centerY, radius, 0, 2 * Math.PI, false);
+ctx.fillStyle = 'yellow';
+ctx.fill();
+
+
+var centerX = 9;
+var centerY = 4;
+var radius = 2;
+
+ctx.beginPath();
+ctx.arc(centerX, centerY, radius, 0, 2 * Math.PI, false);
+ctx.fillStyle = 'white';
+ctx.fill();
+
+ctx.lineWidth = 1;
+ctx.strokeStyle = 'black';
+ctx.stroke();
+
+</script>
+
+		<script type="text/javascript">		
+
+
+			function simulateKeyup(code) { 
+				var e = jQuery.Event("keyup");
+				e.keyCode = code;
+				jQuery('body').trigger(e);
+			}
+			function simulateKeydown(code) { 
+				var e = jQuery.Event("keydown");
+				e.keyCode = code;
+				jQuery('body').trigger(e);
+			}
+			
+			$(document).ready(function() { 
+				//$.mobile.loading().hide();
+				loadAllSound();
+				
+				HELP_TIMER = setInterval('blinkHelp()', HELP_DELAY);
+				
+				initHome();
+				
+				$(".sound").click(function(e) { 
+					e.stopPropagation();
+					
+					var sound = $(this).attr("data-sound");
+					if ( sound === "on" ) { 
+						$(".sound").attr("data-sound", "off");
+						$(".sound").find("img").attr("src", "img/sound-off.png");
+						GROUP_SOUND.mute();
+					} else { 
+						$(".sound").attr("data-sound", "on");
+						$(".sound").find("img").attr("src", "img/sound-on.png");
+						GROUP_SOUND.unmute();
+					}
+				});
+				
+				$(".help-button, #help").click(function(e) { 
+					e.stopPropagation();
+					if (!PACMAN_DEAD && !LOCK && !GAMEOVER) { 
+						if ( $('#help').css("display") === "none") { 
+							$('#help').fadeIn("slow");
+							$(".help-button").hide();
+							if ( $("#panel").css("display") !== "none") { 
+								pauseGame();
+							}
+						} else { 
+							$('#help').fadeOut("slow");
+							$(".help-button").show();
+						}
+					}
+				});
+				
+				
+				$("#home").on("click touchstart", function(e) { 
+					if ( $('#help').css("display") === "none") { 
+						e.preventDefault();
+						simulateKeydown(13);
+					}
+				});
+				$("#control-up, #control-up-second, #control-up-big").on("mousedown touchstart", function(e) { 
+					e.preventDefault();
+					simulateKeydown(38);
+					simulateKeyup(13);
+				});
+				$("#control-down, #control-down-second, #control-down-big").on("mousedown touchstart", function(e) { 
+					e.preventDefault();
+					simulateKeydown(40);
+					simulateKeyup(13);
+				});
+				$("#control-left, #control-left-big").on("mousedown touchstart", function(e) { 
+					e.preventDefault();
+					simulateKeydown(37);
+					simulateKeyup(13);
+				});
+				$("#control-right, #control-right-big").on("mousedown touchstart", function(e) { 
+					e.preventDefault();
+					simulateKeydown(39);
+					simulateKeyup(13);
+				});
+
+				
+				$("body").keyup(function(e) { 
+					KEYDOWN = false;
+				});
+				
+				$(".containerHomeImage").click(function(e) { 
+					$('.imgagesInitContainer').hide();
+
+					if (HOME) { 
+						if($(this)[0].className === 'containerHomeImage imageClaseMediaContainer'){
+							PACMAN_MOVING_SPEED = 15;
+							GHOST_MOVING_SPEED = 18;
+						}else if($(this)[0].className === 'containerHomeImage imageRicoContainer'){
+							PACMAN_MOVING_SPEED = 2;
+							GHOST_MOVING_SPEED = 40;
+						}else{
+							PACMAN_MOVING_SPEED = 30;
+							GHOST_MOVING_SPEED = 10;
+						}
+
+						initGame(true);
+					}
+				});
+
+				$("body").keydown(function(e) { 
+				
+					//if (HOME) { 
+						//PACMAN_MOVING_SPEED = 2;
+						//PACMAN_MOVING_SPEED = 20;
+						//PACMAN_MOVING_SPEED = 20;
+						//initGame(true);
+						
+					//} else { 				
+						//if (!KEYDOWN) { 
+							KEYDOWN = true;
+							if (PACMAN_DEAD && !LOCK) { 
+								erasePacman();
+								resetPacman();
+								drawPacman();
+								
+								eraseGhosts();
+								resetGhosts();
+								drawGhosts();
+								moveGhosts();
+								
+								blinkSuperBubbles();
+								
+							} else if (e.keyCode >= 37 && e.keyCode <= 40 && !PAUSE && !PACMAN_DEAD && !LOCK) { 
+								if ( e.keyCode === 39 ) { 
+									movePacman(1);
+								} else if ( e.keyCode === 40 ) { 
+									movePacman(2);
+								} else if ( e.keyCode === 37 ) { 
+									movePacman(3);
+								} else if ( e.keyCode === 38 ) { 
+									movePacman(4);
+								}
+							} else if (e.keyCode === 68 && !PAUSE) { 
+								/*if ( $("#canvas-paths").css("display") === "none" ) { 
+									$("#canvas-paths").show();
+								} else { 
+									$("#canvas-paths").hide();
+								}*/
+							} else if (e.keyCode === 80 && !PACMAN_DEAD && !LOCK) { 
+								if (PAUSE) { 
+									resumeGame();
+								} else { 
+									pauseGame();
+								}
+							} else if (GAMEOVER) { 
+								$('.imgagesInitContainer').show();
+								initHome();
+							}
+						//}
+					//}
+				});
+			});
+		</script>
+	
+		<title>TRUELOGIC Pac Man</title>
+	</head>
+		
+	<body>
+
+
+		<div style="width: 100%; float: left; height: 128px;" class="imgagesInitContainer">
+			<div class="containerHomeImage imagePobreContainer">
+				<img style="width: 100px; height: 100px; float: left;" class="imagePobre" src="img/custom/pobres.jpg" />
+			</div>
+			<div class="containerHomeImage imageClaseMediaContainer">
+				<img  style="width: 100px; height: 100px; float: left;" class="imageClaseMedia" src="img/custom/clase_media.jpg" />
+			</div>
+			<div class="containerHomeImage imageRicoContainer">
+				<img  style="width: 100px; height: 100px; float: left;" class="imageRico" src="img/custom/rico.jpg" />
+			</div>
+		</div>
+	
+<div style="float: left; width: 100%; height: 100%;" class="bodyContainer">
+
+		<div id="sound"></div>
+	
+		<div id="help">
+			<h2>Ayuda</h2>
+			<table align="center" border="0" cellPadding="2" cellSpacing="0">
+				<tbody>
+					<tr><td>Arrow Left : </td><td>Move Left</td></tr>
+					<tr><td>Arrow Right : </td><td>Move Right</td></tr>
+					<tr><td>Arrow Down : </td><td>Move Down</td></tr>
+					<tr><td>Arrow Up : </td><td>Move Up</td></tr>
+					<tr><td colspan="2">&nbsp;</td></tr>
+					<tr><td>P : </td><td>PAUSE</td></tr>
+				</tbody>
+			</table>
+		</div>
+	
+		<div id="home">
+			<h1>pac-man</h1>
+			<h3>Truelogic<br><em>2018</em></h3>
+			<canvas id="canvas-home-title-pacman"></canvas>
+			<div id="presentation">
+				<canvas id="canvas-presentation-blinky"></canvas><div id="presentation-character-blinky">- shadow</div><div id="presentation-name-blinky">"Desigualdad"</div>
+				<canvas id="canvas-presentation-pinky"></canvas><div id="presentation-character-pinky">- speedy</div><div id="presentation-name-pinky">"pinky"</div>
+				<canvas id="canvas-presentation-inky"></canvas><div id="presentation-character-inky">- bashful</div><div id="presentation-name-inky">"inky"</div>
+				<canvas id="canvas-presentation-clyde"></canvas><div id="presentation-character-clyde">- pokey</div><div id="presentation-name-clyde">"clyde"</div>
+			</div>
+			<canvas id="trailer"></canvas>
+			<div class="help-button">- Ayuda -</div>
+			<a class="sound" href="javascript:void(0);" data-sound="on"><img src="img/sound-on.png" alt="" border="0"></a>
+		</div>
+	
+		<div id="panel">
+			<h1>pac-man</h1>
+			<canvas id="canvas-panel-title-pacman"></canvas>
+			<div id="score"><h2>1UP</h2><span>00</span></div>
+			<div id="highscore"><h2>High Score</h2><span>00</span></div>
+			<div id="board">
+				<canvas id="canvas-board"></canvas>
+				<canvas id="canvas-paths"></canvas>
+				<canvas id="canvas-bubbles"></canvas>
+				<canvas id="canvas-fruits"></canvas>
+				<canvas id="canvas-pacman"></canvas>
+				<canvas id="canvas-ghost-blinky"></canvas>
+				<canvas id="canvas-ghost-pinky"></canvas>
+				<canvas id="canvas-ghost-inky"></canvas>
+				<canvas id="canvas-ghost-clyde"></canvas>
+				<div id="control-up-big"></div>
+				<div id="control-down-big"></div>
+				<div id="control-left-big"></div>
+				<div id="control-right-big"></div>
+			</div>
+			<div id="control">
+				<div id="control-up"></div>
+				<div id="control-up-second"></div>
+				<div id="control-down"></div> 
+				<div id="control-down-second"></div>
+				<div id="control-left"></div>
+				<div id="control-right"></div>
+			</div>
+			<canvas id="canvas-lifes"></canvas>
+			<canvas id="canvas-level-fruits"></canvas>
+			<div id="message"></div>
+			<div class="help-button">- Ayuda -</div>
+			<a class="sound" href="javascript:void(0);" data-sound="on"><img src="img/sound-on.png" alt="" border="0"></a>
+		</div>
+
+
+</div>
+
+	</body>
+	
+</html>
