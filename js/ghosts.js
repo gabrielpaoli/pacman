@@ -1,3 +1,4 @@
+
 var GHOST_BLINKY_CANVAS_CONTEXT = null;
 var GHOST_BLINKY_POSITION_X = 276;
 var GHOST_BLINKY_POSITION_Y = 204;
@@ -134,7 +135,7 @@ function drawGhosts() {
 	drawGhost("blinky");
 	drawGhost('pinky');
 	drawGhost('inky');
-	//drawGhost("clyde");
+	drawGhost("clyde");
 }
 function drawGhost(ghost) { 
 
@@ -258,7 +259,7 @@ function moveGhosts() {
 	moveGhost("blinky");
 	moveGhost('pinky');
 	moveGhost('inky');
-	//moveGhost("clyde");
+	moveGhost("clyde");
 }
 function moveGhost(ghost) {
 
@@ -317,10 +318,8 @@ function moveGhost(ghost) {
 				eval('GHOST_' + ghost.toUpperCase() + '_POSITION_X = 2;');
 				eval('GHOST_' + ghost.toUpperCase() + '_POSITION_Y = 258;');
 			}
-			//ACA SAQUE EL GHOST
-			if(ghost !== 'clyde'){
-				drawGhost(ghost);
-			}
+			
+			drawGhost(ghost);
 			
 			if (eval('GHOST_' + ghost.toUpperCase() + '_BODY_STATE === 3') && eval('GHOST_' + ghost.toUpperCase() + '_STATE != -1')) { 
 				if ( !PACMAN_MOVING ) { 
@@ -593,7 +592,7 @@ function resumeGhosts() {
 	resumeGhost('blinky');
 	resumeGhost('pinky');
 	resumeGhost('inky');
-	//resumeGhost('clyde');
+	resumeGhost('clyde');
 }
 
 function drawHelperGhost(ctx, x, y, d, b, s, a) { 
