@@ -46,8 +46,21 @@ function drawBubbles() {
 					type = "s";
 					size = SUPER_BUBBLES_SIZE;
 					SUPER_BUBBLES[s] = line + ";" + bubble + ";" + parseInt(correctionX(x, bubble)) + "," + parseInt(y) + ";0";
-					//console.log(s);
-					DrawMoney(ctx,x,y);
+					
+
+					if (line === 4 && bubble === 1) { 
+						DrawSchool(ctx,x,y);
+					}
+					if (line === 4 && bubble === 26) { 
+						DrawMoney(ctx,x,y);
+					}
+					if (line === 23 && bubble === 1) { 
+						//DrawSchool(ctx,x,y);
+					}
+					if (line === 23 && bubble === 26) { 
+						//DrawMoney(ctx,x,y);
+					}
+
 					s ++;
 				} else { 
 					type = "b";
@@ -91,6 +104,162 @@ function DrawMoney(ctx,x,y){
 	
 	ctx.fillStyle = "#dca5be";
 }
+
+
+function DrawSchool(ctx,x,y){
+
+	var x = x - 14;
+	var y = y - 6;
+
+	//General Rectangle
+  ctx.fillStyle = "#e0c233";
+  ctx.fillRect(x + 2,y + 7, 26,23);
+
+  ctx.strokeStyle = "#352215";
+  ctx.lineWidth   = 2;
+  ctx.strokeRect(x + 2,y + 7, 26,23);
+
+	//Top Rectangle
+  ctx.fillStyle = "white";
+  ctx.fillRect(x + 7, y + 0, 15,7);
+
+  ctx.strokeStyle = "#352215";
+  ctx.lineWidth   = 2;
+  ctx.strokeRect(x + 7, y + 0, 15,7);
+
+
+  //Top windows
+  ctx.fillStyle = "#8ccfff";
+  ctx.fillRect(x + 7, y + 11, 5,5);
+
+  ctx.strokeStyle = "#352215";
+  ctx.lineWidth   = 2;
+  ctx.strokeRect(x + 7, y + 11, 5,5);
+
+  ctx.fillStyle = "#8ccfff";
+  ctx.fillRect(x + 12, y + 11, 5,5);
+
+  ctx.strokeStyle = "#352215";
+  ctx.lineWidth   = 2;
+  ctx.strokeRect(x + 12, y + 11, 5,5);
+
+  ctx.fillStyle = "#8ccfff";
+  ctx.fillRect(x + 17,y + 11, 5,5);
+
+  ctx.strokeStyle = "#352215";
+  ctx.lineWidth   = 2;
+  ctx.strokeRect(x + 17,y + 11, 5,5);
+
+
+  //Middle windows
+  ctx.fillStyle = "#8ccfff";
+  ctx.fillRect(x + 17,y + 20, 5,5);
+
+  ctx.strokeStyle = "#352215";
+  ctx.lineWidth   = 2;
+  ctx.strokeRect(x + 17,y + 20, 5,5);
+
+  ctx.fillStyle = "#8ccfff";
+  ctx.fillRect(x + 7,y + 20, 5,5);
+
+  ctx.strokeStyle = "#352215";
+  ctx.lineWidth   = 2;
+  ctx.strokeRect(x + 7,y + 20, 5,5);
+
+
+  //Door
+  ctx.fillStyle = "#A0522D";
+  ctx.fillRect(x + 12, y + 20, 5,10);
+
+  ctx.strokeStyle = "#352215";
+  ctx.lineWidth   = 2;
+  ctx.strokeRect(x + 12, y + 20, 5,10);
+
+
+  //Circles
+  var centerX = x + 2;
+  var centerY = y + 28;
+  var radius = 2;
+
+  ctx.beginPath();
+  ctx.arc(centerX, centerY, radius, 0, 2 * Math.PI, false);
+  ctx.fillStyle = 'red';
+  ctx.fill();
+  ctx.lineWidth = 2;
+  ctx.strokeStyle = '#352215';
+  ctx.stroke();    
+
+
+  //Circles
+  var centerX = x + 6;
+  var centerY = y + 28;
+  var radius = 2;
+
+  ctx.beginPath();
+  ctx.arc(centerX, centerY, radius, 0, 2 * Math.PI, false);
+  ctx.fillStyle = 'green';
+  ctx.fill();
+  ctx.lineWidth = 2;
+  ctx.strokeStyle = '#352215';
+  ctx.stroke();    
+
+  //Circles
+  var centerX = x + 10;
+  var centerY = y + 28;
+  var radius = 2;
+
+  ctx.beginPath();
+  ctx.arc(centerX, centerY, radius, 0, 2 * Math.PI, false);
+  ctx.fillStyle = 'red';
+  ctx.fill();
+  ctx.lineWidth = 2;
+  ctx.strokeStyle = '#352215';
+  ctx.stroke();    
+
+
+
+  //Circles
+  var centerX = x + 20;
+  var centerY = y + 28;
+  var radius = 2;
+
+  ctx.beginPath();
+  ctx.arc(centerX, centerY, radius, 0, 2 * Math.PI, false);
+  ctx.fillStyle = 'red';
+  ctx.fill();
+  ctx.lineWidth = 2;
+  ctx.strokeStyle = '#352215';
+  ctx.stroke();    
+
+
+  //Circles
+  var centerX = x + 24;
+  var centerY = y + 28;
+  var radius = 2;
+
+  ctx.beginPath();
+  ctx.arc(centerX, centerY, radius, 0, 2 * Math.PI, false);
+  ctx.fillStyle = 'green';
+  ctx.fill();
+  ctx.lineWidth = 2;
+  ctx.strokeStyle = '#352215';
+  ctx.stroke();    
+
+  //Circles
+  var centerX = x + 28;
+  var centerY = y + 28;
+  var radius = 2;
+
+  ctx.beginPath();
+  ctx.arc(centerX, centerY, radius, 0, 2 * Math.PI, false);
+  ctx.fillStyle = 'red';
+  ctx.fill();
+  ctx.lineWidth = 2;
+  ctx.strokeStyle = '#352215';
+  ctx.stroke();    
+
+}
+
 
 function stopBlinkSuperBubbles() { 
 	clearInterval(SUPER_BUBBLES_BLINK_TIMER);
@@ -173,7 +342,7 @@ function eraseBubble(t, x, y) {
 	var size = "";
 	if (t === "s") { 
 		size = SUPER_BUBBLES_SIZE;
-		ctx.clearRect(x - size, y - size, (size + 1) * 2, (size + 1) * 2);
+		ctx.clearRect(x - 30, y - 30, (30 + 1) * 2, (30 + 1) * 2);
 	} else { 
 		size = BUBBLES_SIZE;
 		ctx.clearRect(x - size, y - size, (size + 1) * 2, (size + 1) * 2);
@@ -224,6 +393,8 @@ function canAddBubble(line, bubble) {
 	} else if ( (line === 26) && ( (bubble >= 7 && bubble <= 8) || (bubble >= 19 && bubble <= 20) ) ) { 
 		return false;
 	} else if ( (line >= 27 && line <= 28) && ( (bubble >= 2 && bubble <= 11) || (bubble >= 16 && bubble <= 25) ) ) { 
+		return false;
+	} else if ((line === 5) && (bubble === 1 || bubble === 2)) { //Remove 2 bubbles
 		return false;
 	}
 	
