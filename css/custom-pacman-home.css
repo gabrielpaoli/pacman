@@ -1,0 +1,90 @@
+/* INDEX */
+
+#home_custom{
+	flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+	width: 80%;
+	margin: 0 auto;
+}
+
+.container_logos{
+	display: flex;
+}
+
+.tl_logo{
+	flex: 6;
+}
+.mp_logo{
+	flex: 6;
+}
+
+.yellow_text{
+	color: yellow;
+}
+
+.titulo_mensajeros{
+	margin-top: 80px;
+}
+
+.titulo_mensajeros,
+.titulo_mensajeros span{
+	font-size: 70px;
+}
+
+#presentation,
+#instructions{
+	min-height: 400px;
+}
+
+.homepage_msg{
+	font-size: 30px;
+	width: 60%;
+	margin: 0 auto;
+}
+
+/* HTML 1 */
+
+#instructions{
+	display: flex;
+	width: 80%;
+	margin: 0	auto; 
+}
+
+.container_general_text_and_item div{
+	font-size: 30px;
+}
+
+#instructions .container_general_text_and_item{
+	flex: 6; 
+}
+
+.container_text_and_item{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.container_text_and_item .item{
+	flex: 4;
+	text-align: right;
+	padding-right: 40px;	
+}
+
+.container_text_and_item .text{
+	flex: 8;
+	text-align: left;
+}
+
+#instructions .container_subtitle{
+	margin-bottom: 40px;
+}
+
+.msg_page_four div{
+	font-size: 30px;
+}
+
+.play_logo a{
+	text-decoration: none;
+}

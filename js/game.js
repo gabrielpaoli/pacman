@@ -99,8 +99,35 @@ function initGame(newgame) {
 	ready();
 }
 
+function getParameterByName(name, url) {
+  if (!url) url = window.location.href;
+  name = name.replace(/[\[\]]/g, '\\$&');
+  var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+      results = regex.exec(url);
+  if (!results) return null;
+  if (!results[2]) return '';
+  return decodeURIComponent(results[2].replace(/\+/g, ' '));
+}
+
+function redirectPage(){
+	var gametype = getParameterByName('gametype', window.location.href);
+	if(gametype === '1'){
+		setTimeout (
+			'window.location.replace("page3.html");', 
+		4000); 
+	}
+
+	if(gametype === '2'){
+		setTimeout (
+			'window.location.replace("page4.html");', 
+		4000); 
+	}
+
+}
+
 function win() { 
 	stopAllSound();
+	//message("win");
 
 	LOCK = true;
 	stopPacman();
@@ -110,7 +137,9 @@ function win() {
 	
 	eraseGhosts();
 
-	setTimeout("prepareNextLevel()", 1000);
+	redirectPage();
+
+	//setTimeout("prepareNextLevel()", 1000);
 
 }
 function prepareNextLevel(i) { 
@@ -301,6 +330,10 @@ function gameover() {
 	LIFES = 0;
 	LEVEL = 1;
 	SCORE = 0;
+
+
+	redirectPage();
+
 }
 
 function message(m) { 
