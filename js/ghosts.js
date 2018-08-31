@@ -67,10 +67,20 @@ var GHOST_EAT_TIME = 5500;
 var GHOST_BODY_STATE_MAX = 6;
 
 function initGhosts() { 
-	initGhost('blinky');
-	initGhost('pinky');
-	initGhost('inky');
-	initGhost('clyde');
+
+	var gametype = getParameterByName('gametype', window.location.href);
+	if(gametype === '1'){
+		initGhost('blinky');
+		initGhost('pinky');
+	}
+
+	if(gametype === '2'){
+		initGhost('blinky');
+		initGhost('pinky');
+		initGhost('inky');
+		initGhost('clyde');
+	}
+
 }
 function initGhost(ghost) { 
 	var canvas = document.getElementById('canvas-ghost-' + ghost);
@@ -127,16 +137,28 @@ function resetGhosts() {
 	GHOST_CLYDE_AFFRAID_TIMER = null;
 	GHOST_CLYDE_AFFRAID_STATE = 0;
 }
+
 function getGhostCanevasContext(ghost) { 
 	return eval('GHOST_' + ghost.toUpperCase() + '_CANVAS_CONTEXT');
 }
 
 function drawGhosts() { 
-	drawGhost("blinky");
-	drawGhost('pinky');
-	drawGhost('inky');
-	drawGhost("clyde");
+	
+	var gametype = getParameterByName('gametype', window.location.href);
+	if(gametype === '1'){
+		drawGhost("blinky");
+		drawGhost('pinky');
+	}
+
+	if(gametype === '2'){
+		drawGhost("blinky");
+		drawGhost('pinky');
+		drawGhost('inky');
+		drawGhost("clyde");
+	}
+
 }
+
 function drawGhost(ghost) { 
 
 	var ctx = getGhostCanevasContext(ghost);
@@ -163,11 +185,21 @@ function affraidGhosts() {
 	
 	SCORE_GHOST_COMBO = 200;
 
-	affraidGhost("blinky");
-	affraidGhost("pinky");
-	affraidGhost("inky");
-	affraidGhost("clyde");
+	var gametype = getParameterByName('gametype', window.location.href);
+	if(gametype === '1'){
+		affraidGhost("blinky");
+		affraidGhost("pinky");
+	}
+
+	if(gametype === '2'){
+		affraidGhost("blinky");
+		affraidGhost("pinky");
+		affraidGhost("inky");
+		affraidGhost("clyde");
+	}
+
 }
+
 function affraidGhost(ghost) { 
 	if ( eval('GHOST_' + ghost.toUpperCase() + '_AFFRAID_TIMER !== null') ) { 
 		eval('GHOST_' + ghost.toUpperCase() + '_AFFRAID_TIMER.cancel()');
@@ -256,11 +288,22 @@ function cancelEatGhost(ghost) {
 }
 
 function moveGhosts() { 
-	moveGhost("blinky");
-	moveGhost('pinky');
-	moveGhost('inky');
-	moveGhost("clyde");
+
+	var gametype = getParameterByName('gametype', window.location.href);
+	if(gametype === '1'){
+		moveGhost("blinky");
+		moveGhost('pinky');
+	}
+
+	if(gametype === '2'){
+		moveGhost("blinky");
+		moveGhost('pinky');
+		moveGhost('inky');
+		moveGhost("clyde");
+	}
+
 }
+
 function moveGhost(ghost) {
 
 	if (eval('GHOST_' + ghost.toUpperCase() + '_MOVING === false')) { 
@@ -478,10 +521,19 @@ function eraseGhost(ghost) {
 }
 function eraseGhosts() { 
 
-	eraseGhost('blinky');
-	eraseGhost('pinky');
-	eraseGhost('inky');
-	eraseGhost('clyde');
+	var gametype = getParameterByName('gametype', window.location.href);
+	if(gametype === '1'){
+		eraseGhost('blinky');
+		eraseGhost('pinky');
+	}
+
+	if(gametype === '2'){
+		eraseGhost('blinky');
+		eraseGhost('pinky');
+		eraseGhost('inky');
+		eraseGhost('clyde');
+	}
+
 }
 
 function canMoveGhost(ghost, direction) { 
@@ -554,10 +606,21 @@ function stopGhost(ghost) {
 	}
 }
 function stopGhosts() { 
-	stopGhost('blinky');
-	stopGhost('pinky');
-	stopGhost('inky');
-	stopGhost('clyde');
+
+	var gametype = getParameterByName('gametype', window.location.href);
+	if(gametype === '1'){
+		stopGhost('blinky');
+		stopGhost('pinky');
+	}
+
+	if(gametype === '2'){
+		stopGhost('blinky');
+		stopGhost('pinky');
+		stopGhost('inky');
+		stopGhost('clyde');
+	}
+
+
 }
 
 function pauseGhost(ghost) { 
@@ -574,10 +637,20 @@ function pauseGhost(ghost) {
 	}
 }
 function pauseGhosts() { 
-	pauseGhost('blinky');
-	pauseGhost('pinky');
-	pauseGhost('inky');
-	pauseGhost('clyde');
+
+	var gametype = getParameterByName('gametype', window.location.href);
+	if(gametype === '1'){
+		pauseGhost('blinky');
+		pauseGhost('pinky');
+	}
+
+	if(gametype === '2'){
+		pauseGhost('blinky');
+		pauseGhost('pinky');
+		pauseGhost('inky');
+		pauseGhost('clyde');
+	}
+
 }
 
 function resumeGhost(ghost) { 
@@ -589,10 +662,20 @@ function resumeGhost(ghost) {
 	moveGhost(ghost);
 }
 function resumeGhosts() { 
-	resumeGhost('blinky');
-	resumeGhost('pinky');
-	resumeGhost('inky');
-	resumeGhost('clyde');
+
+	var gametype = getParameterByName('gametype', window.location.href);
+	if(gametype === '1'){
+		resumeGhost('blinky');
+		resumeGhost('pinky');
+	}
+
+	if(gametype === '2'){
+		resumeGhost('blinky');
+		resumeGhost('pinky');
+		resumeGhost('inky');
+		resumeGhost('clyde');
+	}
+
 }
 
 function drawHelperGhost(ctx, x, y, d, b, s, a) { 
