@@ -40,11 +40,11 @@
 
 .homepage_msg{
 	font-size: 30px;
-	width: 60%;
+	width: 80%;
 	margin: 0 auto;
 }
 
-/* HTML 1 */
+/* HTML 1 & HTML 3 */
 
 #instructions{
 	display: flex;
@@ -87,4 +87,11 @@
 
 .play_logo a{
 	text-decoration: none;
+}
+
+/* HTML 4 */
+
+
+.page_four .titulo_mensajeros{
+	color: #2E9AFE
 }
