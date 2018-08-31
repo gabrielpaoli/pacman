@@ -24,7 +24,6 @@
 		
 		<script type="text/javascript">		
 
-
 			function simulateKeyup(code) { 
 				var e = jQuery.Event("keyup");
 				e.keyCode = code;
@@ -108,24 +107,19 @@
 					KEYDOWN = false;
 				});
 				
-				$(".containerHomeImage").click(function(e) { 
-					$('.imgagesInitContainer').hide();
-
-					if (HOME) { 
-						if($(this)[0].className === 'containerHomeImage imageClaseMediaContainer'){
-							PACMAN_MOVING_SPEED = 15;
-							GHOST_MOVING_SPEED = 18;
-						}else if($(this)[0].className === 'containerHomeImage imageRicoContainer'){
-							PACMAN_MOVING_SPEED = 2;
-							GHOST_MOVING_SPEED = 40;
-						}else{
-							PACMAN_MOVING_SPEED = 30;
-							GHOST_MOVING_SPEED = 10;
-						}
-
-						initGame(true);
+				if (HOME) { 
+					var gametype = getParameterByName('gametype', window.location.href);
+					if(gametype === "1"){
+						PACMAN_MOVING_SPEED = 8;
+						GHOST_MOVING_SPEED = 20;
+					}else if(gametype === "2"){
+						PACMAN_MOVING_SPEED = 8;
+						GHOST_MOVING_SPEED = 20;
 					}
-				});
+
+					initGame(true);
+
+				}
 
 				$("body").keydown(function(e) { 
 				
@@ -153,15 +147,14 @@
 							movePacman(4);
 						}
 					} else if (e.keyCode === 80 && !PACMAN_DEAD && !LOCK) { 
+
 						if (PAUSE) { 
 							resumeGame();
 						} else { 
 							pauseGame();
 						}
 					} else if (GAMEOVER) { 
-						$('.imgagesInitContainer').show();
-						window.location.replace("page3.html");
-						//initHome();
+						//window.location.replace("page3.html?gametype=1");
 					}
 				});
 			});
@@ -173,19 +166,6 @@
 	<body>
 
 
-
-		<div style="width: 100%; float: left; height: 128px;" class="imgagesInitContainer">
-			<div class="containerHomeImage imagePobreContainer">
-				<img style="width: 100px; height: 100px; float: left;" class="imagePobre" src="img/custom/pobres.jpg" />
-			</div>
-			<div class="containerHomeImage imageClaseMediaContainer">
-				<img  style="width: 100px; height: 100px; float: left;" class="imageClaseMedia" src="img/custom/clase_media.jpg" />
-			</div>
-			<div class="containerHomeImage imageRicoContainer">
-				<img  style="width: 100px; height: 100px; float: left;" class="imageRico" src="img/custom/rico.jpg" />
-			</div>
-		</div>
-	
 <div style="float: left; width: 100%; height: 100%;" class="bodyContainer">
 
 		<div id="sound"></div>
