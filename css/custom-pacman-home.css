@@ -11,6 +11,7 @@
 
 .container_logos{
 	display: flex;
+  align-items: center;	
 }
 
 .tl_logo{
