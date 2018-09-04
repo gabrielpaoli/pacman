@@ -55,10 +55,10 @@ function drawBubbles() {
 						DrawMoney(ctx,x,y);
 					}
 					if (line === 23 && bubble === 1) { 
-						//DrawSchool(ctx,x,y);
+						DrawMoney(ctx,x,y);
 					}
 					if (line === 23 && bubble === 26) { 
-						//DrawMoney(ctx,x,y);
+						DrawMoney(ctx,x,y);
 					}
 
 					s ++;
