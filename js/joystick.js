@@ -3,6 +3,12 @@ $(document).ready(function() {
   var hasGP = false;
   var repGP;
 
+  const rightArrow = 37;
+  const upArrow = 38;
+  const leftArrow = 39;
+  const downArrow = 40;
+
+
   function canGame() {
       return "getGamepads" in navigator;
   }
@@ -10,33 +16,34 @@ $(document).ready(function() {
   function reportOnGamepad() {
     var gp = navigator.getGamepads()[0];
 
-    if(gp.buttons[2].pressed){
-   		var href_list = $('.play_logo a').attr("href");
-   		if(href_list !== undefined){
-				window.location.href = href_list;
-			}
-    }
+    if(gp.axes[0]){
+  		if(gp.axes[0] === 1 && Math.trunc(gp.axes[1]) === 0){
 
-  	if(gp.axes[0]){
-  		if(gp.axes[0] === 1 && gp.axes[1] === 0){
-				simulateKeyPress(39);
+				simulateKeyPress(leftArrow);
 				jQuery( "body" ).trigger( e );
 
   		}
-  		if(gp.axes[0] === -1 && gp.axes[1] === 0){
-				simulateKeyPress(37);
+  		if(gp.axes[0] === -1 && Math.trunc(gp.axes[1]) === 0){
+				simulateKeyPress(rightArrow);
   		}
 
   	}
 
   	if(gp.axes[1]){
-  		if(gp.axes[0] === 0 && gp.axes[1] === -1){
-				simulateKeyPress(38);
+  		if(Math.trunc(gp.axes[0]) === 0 && gp.axes[1] === -1){
+				simulateKeyPress(upArrow);
   		}
-  		if(gp.axes[0] === 0 && gp.axes[1] === 1){
-				simulateKeyPress(40);
+  		if(Math.trunc(gp.axes[0]) === 0 && gp.axes[1] === 1){
+				simulateKeyPress(downArrow);
   		}
   	}
+
+    if(gp.buttons[2].pressed){
+      var href_list = $('.play_logo a').attr("href");
+      if(href_list !== undefined){
+        window.location.href = href_list;
+      }
+    }
   }
 
 	if(canGame()) {
