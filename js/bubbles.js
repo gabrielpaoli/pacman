@@ -34,7 +34,6 @@ function getBubblesCanevasContext() {
 function drawBubbles() { 
 
 	var ctx = getBubblesCanevasContext();
-	ctx.fillStyle = "#dca5be";
 	
 	for (var line = 1, linemax = 29, i = 0, s = 0; line <= linemax; line ++) { 
 		var y = getYFromLine(line);
@@ -52,26 +51,27 @@ function drawBubbles() {
 						DrawSchool(ctx,x,y);
 					}
 					if (line === 4 && bubble === 26) { 
-						DrawMoney(ctx,x,y);
+						drawBook(ctx,x,y);
 					}
 					if (line === 23 && bubble === 1) { 
-						DrawMoney(ctx,x,y);
+						drawMedical(ctx,x,y);
 					}
 					if (line === 23 && bubble === 26) { 
-						DrawMoney(ctx,x,y);
+						drawHeart(ctx,x,y);
 					}
 
 					s ++;
 				} else { 
+					ctx.fillStyle = "#dca5be";
 					type = "b";
 					size = BUBBLES_SIZE;
 					ctx.beginPath();
 					ctx.arc(correctionX(x, bubble), y, size, 0, 2 * Math.PI, false);
 					ctx.fill();					
+					ctx.closePath();
 				}
 				BUBBLES_COUNTER ++;
 
-				ctx.closePath();
 				
 				BUBBLES_ARRAY.push( parseInt(correctionX(x, bubble)) + "," + parseInt(y) + ";" + line + ";" + bubble + ";" + type + ";0" );
 				i ++;
@@ -80,36 +80,75 @@ function drawBubbles() {
 	}
 }
 
-function DrawMoney(ctx,x,y){
+function drawHeart(ctx,x,y){
 	var x = x - 10;
-	var y = y - 6;
-	var centerX = x + 12;
-	var centerY = y + 6;
-	var centerSignX = x + 9;
-	var centerSignY = y + 9;
+	var y = y - 10;
 
-	ctx.fillStyle = "green";
-	ctx.fillRect(x,y,24,12);
+  var img=document.getElementById("heart");
+	ctx.beginPath();
+  ctx.drawImage(img,x,y);
+	ctx.closePath();
+};
 
-	var radius = 4;
+
+function drawBook(ctx,x,y){
+	var x = x - 8;
+	var y = y - 4;
 
 	ctx.beginPath();
-	ctx.arc(centerX, centerY, radius, 0, 2 * Math.PI, false);
-	ctx.fillStyle = 'white';
+
+	ctx.rect(x + 2,y + 1,17,25);
+	ctx.fillStyle = "white";
 	ctx.fill();
 
-	ctx.font = "9px Arial";
-	ctx.fillStyle = "black";
-	ctx.fillText("$",centerSignX,centerSignY);
-	
-	ctx.fillStyle = "#dca5be";
+	ctx.lineWidth = 2;
+	ctx.strokeStyle = "#4d2600";
+	ctx.stroke();
+
+	ctx.fillStyle = "#4d2600";
+	ctx.fillRect(x + 0,y + 3, 17, 25);
+
+	ctx.fillStyle = "white";
+	ctx.fillRect(x + 4, y + 8, 9, 2);
+
+	ctx.closePath();
 }
 
+
+function drawMedical(ctx,x,y){
+
+	var x = x - 12;
+	var y = y - 16;
+
+	ctx.beginPath();
+
+	ctx.fillStyle = "white";
+	ctx.fillRect(x + 0,y + 6,30,20);
+
+	ctx.fillStyle = "red";
+	ctx.fillRect(x + 9,y + 14,12,4);
+
+	ctx.fillStyle = "red";
+	ctx.fillRect(x + 13,y + 10,4,12);
+
+	ctx.fillStyle = "white";
+	ctx.fillRect(x + 8,y + 0,2,6);
+
+	ctx.fillStyle = "white";
+	ctx.fillRect(x + 20,y + 0,2,6);
+
+	ctx.fillStyle = "white";
+	ctx.fillRect(x + 8,y + 0,12,2);
+
+	ctx.closePath();
+}
 
 function DrawSchool(ctx,x,y){
 
 	var x = x - 14;
 	var y = y - 6;
+
+	ctx.beginPath();
 
 	//General Rectangle
   ctx.fillStyle = "#e0c233";
@@ -258,6 +297,7 @@ function DrawSchool(ctx,x,y){
   ctx.strokeStyle = '#352215';
   ctx.stroke();    
 
+	ctx.closePath();
 }
 
 
@@ -395,6 +435,12 @@ function canAddBubble(line, bubble) {
 	} else if ( (line >= 27 && line <= 28) && ( (bubble >= 2 && bubble <= 11) || (bubble >= 16 && bubble <= 25) ) ) { 
 		return false;
 	} else if ((line === 5) && (bubble === 1 || bubble === 2)) { //Remove 2 bubbles
+		return false;
+	} else if ((line === 5) && (bubble === 26)) { //Remove 1 bubbles
+		return false;
+	} else if ((line === 22) && (bubble === 1)) { //Remove 1 bubbles
+		return false;
+	} else if ((line === 23) && (bubble === 2)) { //Remove 1 bubbles
 		return false;
 	}
 	

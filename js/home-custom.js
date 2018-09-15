@@ -278,3 +278,53 @@ function drawMoney(x, y){
 	
 	ctx.fillStyle = "#dca5be";
 }
+
+function drawBook(){
+	canvas = document.getElementById('canvas-book');
+	canvas.setAttribute('width', '30');
+	canvas.setAttribute('height', '50');
+	if (canvas.getContext) { 
+		ctx = canvas.getContext('2d');
+	}
+
+	ctx.rect(3,0,25,40);
+	ctx.fillStyle = "white";
+	ctx.fill();
+	ctx.lineWidth = 3;
+	ctx.strokeStyle = "#4d2600";
+	ctx.stroke();
+
+	ctx.fillStyle = "#4d2600";
+	ctx.fillRect(0,3,25,40);
+
+	ctx.fillStyle = "white";
+	ctx.fillRect(5,13,15,4);
+}
+
+function drawMedical(){
+	canvas = document.getElementById('canvas-medical');
+	canvas.setAttribute('width', '30');
+	canvas.setAttribute('height', '26');
+	if (canvas.getContext) { 
+		ctx = canvas.getContext('2d');
+	}
+
+	ctx.fillStyle = "white";
+	ctx.fillRect(0,6,30,20);
+
+	ctx.fillStyle = "red";
+	ctx.fillRect(9,14,12,4);
+
+	ctx.fillStyle = "red";
+	ctx.fillRect(13,10,4,12);
+
+	ctx.fillStyle = "white";
+	ctx.fillRect(8,0,2,6);
+
+	ctx.fillStyle = "white";
+	ctx.fillRect(20,0,2,6);
+
+	ctx.fillStyle = "white";
+	ctx.fillRect(8,0,12,2);
+
+}
