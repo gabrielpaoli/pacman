@@ -226,8 +226,7 @@ function times() {
 	TIME_LEVEL ++;
 	TIME_LIFE ++;
 	TIME_FRUITS ++;
-	
-	fruit();
+	//fruit();  //Saque las frutas de la pantalla
 }
 function pauseTimes() { 
 	if (TIME_GENERAL_TIMER != -1) { 
