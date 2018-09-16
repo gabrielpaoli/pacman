@@ -62,10 +62,10 @@
 
 
 <script>
-	i = 20;
+	i = 10;
 	onTimer();
 	function onTimer() {
-	  document.getElementById('mycounter').innerHTML = "00:" + i;
+	  document.getElementById('mycounter').innerHTML = "00:" + pad(i);
 	  i--;
 	  if (i < 0) {
 	    window.location.replace("page3.html");
