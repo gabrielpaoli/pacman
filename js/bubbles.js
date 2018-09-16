@@ -57,7 +57,7 @@ function drawBubbles() {
 						drawMedical(ctx,x,y);
 					}
 					if (line === 23 && bubble === 26) { 
-						drawHeart(ctx,x,y);
+						//drawHeart(ctx,x,y);
 					}
 
 					s ++;
@@ -80,15 +80,61 @@ function drawBubbles() {
 	}
 }
 
-function drawHeart(ctx,x,y){
+function DrawMoney(ctx,x,y){
 	var x = x - 10;
-	var y = y - 10;
+	var y = y - 6;
+	var centerX = x + 12;
+	var centerY = y + 6;
+	var centerSignX = x + 9;
+	var centerSignY = y + 9;
 
-  var img=document.getElementById("heart");
 	ctx.beginPath();
-  ctx.drawImage(img,x,y);
+	ctx.fillStyle = "green";
+	ctx.fillRect(x,y,24,12);
+
+	var radius = 4;
+
+	ctx.beginPath();
+	ctx.arc(centerX, centerY, radius, 0, 2 * Math.PI, false);
+	ctx.fillStyle = 'white';
+	ctx.fill();
+
+	ctx.font = "9px Arial";
+	ctx.fillStyle = "black";
+	ctx.fillText("$",centerSignX,centerSignY);
+	
+	ctx.fillStyle = "#dca5be";
+
 	ctx.closePath();
-};
+
+}
+
+function drawHeart(ctx,x,y) { 
+	
+	var x = x - 10;
+	var y = y - 6;
+
+	ctx.beginPath();
+
+	var w = 20, h = 20;
+
+	ctx.fillStyle = "#ff5050";
+	var d = Math.min(w, h);
+	var k = 20;
+
+	
+	ctx.moveTo(20, k + d / 4);
+	ctx.quadraticCurveTo(k, k, k + d / 4, k);
+	ctx.quadraticCurveTo(k + d / 2, k, k + d / 2, k + d / 4);
+	ctx.quadraticCurveTo(k + d / 2, k, k + d * 3/4, k);
+	ctx.quadraticCurveTo(k + d, k, k + d, k + d / 4);
+	ctx.quadraticCurveTo(k + d, k + d / 2, k + d * 3/4, k + d * 3/4);
+	ctx.lineTo(k + d / 2, k + d);
+	ctx.lineTo(k + d / 4, k + d * 3/4);
+	ctx.quadraticCurveTo(k, k + d / 2, k, k + d / 4);
+	ctx.fill();
+	ctx.closePath();
+}
 
 
 function drawBook(ctx,x,y){
@@ -436,7 +482,7 @@ function canAddBubble(line, bubble) {
 		return false;
 	} else if ((line === 5) && (bubble === 1 || bubble === 2)) { //Remove 2 bubbles
 		return false;
-	} else if ((line === 5) && (bubble === 26)) { //Remove 1 bubbles
+	} else if ((line === 5) && (bubble === 25 || bubble === 26)) { //Remove 2 bubbles
 		return false;
 	} else if ((line === 22) && (bubble === 1)) { //Remove 1 bubbles
 		return false;

@@ -113,7 +113,7 @@ function redirectPage(){
 	var gametype = getParameterByName('gametype', window.location.href);
 	if(gametype === '1'){
 		setTimeout (
-			'window.location.replace("page3.html");', 
+			'window.location.replace("prevscreen1.html");', 
 		4000); 
 	}
 

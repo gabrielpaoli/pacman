@@ -6,43 +6,63 @@
   justify-content: center;
   text-align: center;
 	width: 80%;
-	margin: 0 auto;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  /* bring your own prefixes */
+  transform: translate(-50%, -50%);
 }
 
-.container_logos{
+.container_logos,
+.container_logos_page_four{
 	display: flex;
   align-items: center;	
 }
 
 .tl_logo{
+	flex: 12;
+	margin-top: 20px;
+}
+
+.container_logos_page_four .tl_logo{
 	flex: 6;
 }
-.mp_logo{
+
+.container_logos_page_four .mp_logo{
 	flex: 6;
+}
+
+.logo-pacman{
 }
 
 .yellow_text{
 	color: yellow;
 }
 
-.titulo_mensajeros{
-	margin-top: 80px;
-}
-
 .titulo_mensajeros,
 .titulo_mensajeros span{
-	font-size: 70px;
+	font-size: 40px;
+}
+
+.white{
+	color: white !important;
 }
 
 #presentation,
 #instructions{
-	min-height: 400px;
+    min-height: 240px;
 }
 
 .homepage_msg{
 	font-size: 30px;
 	width: 80%;
 	margin: 0 auto;
+}
+
+
+.logo-mensajeros{
+	margin-top: -40px;
+	margin-bottom: 60px;
 }
 
 /* HTML 1 & HTML 3 */
@@ -95,4 +115,23 @@
 
 .page_four .titulo_mensajeros{
 	color: #2E9AFE
+}
+
+
+/* MISC */
+
+#mycounter{
+  color: red;
+  font-size: 34px;	
+  margin-top: 40px;
+}
+
+#instructionsPrevScreen{
+
+
+}
+
+#instructionsPrevScreen div{
+	margin-bottom: 40px;
+	font-size: 30px;
 }

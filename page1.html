@@ -24,18 +24,23 @@
 		initBlinky();
 		initPinky();
 
+		drawBook();
+		drawSchool();
+		drawHeart();
+		drawMedical();
+
 	});
 </script>
 
 
 	<body>
 		<div id="home_custom">
-			<h1 class="titulo_mensajeros">ACT I</h1>
+			<h1 class="titulo_mensajeros">ESCENARIO I</h1>
 
 			<div id="instructions">
 
 					<div class="container_general_text_and_item">
-						<div class="container_subtitle">Combati estos fantasmas:</div>
+						<div class="container_subtitle">Enfrenta estas dificultades:</div>
 						
 						<div class="container_text_and_item">
 							<div class="item"><canvas id="canvas-presentation-blinky"></canvas></div>
@@ -50,26 +55,26 @@
 				
 
 					<div class="container_general_text_and_item">
-						<div class="container_subtitle">Encontrando estas ayudas:</div>
+						<div class="container_subtitle">Teniendo estas oportunidades:</div>
 						
 						<div class="container_text_and_item">
-							<div class="item">++++</div>
+							<div class="item"><canvas id="canvas-book"></canvas></div>
 							<div class="text">Educacion</div>
 						</div>
 					
 						<div class="container_text_and_item">
-							<div class="item">++++</div>
-							<div class="text">Contencion</div>
+							<div class="item"><canvas id="canvas-medical"></canvas></div>
+							<div class="text">Salud</div>
 						</div>		
 
 						<div class="container_text_and_item">
-							<div class="item">++++</div>
+							<div class="item"><canvas id="canvas-school"></canvas></div>
 							<div class="text">Comunidad</div>
 						</div>		
 
 						<div class="container_text_and_item">
-							<div class="item">++++</div>
-							<div class="text">Oportunidades</div>
+							<div class="item"><canvas id="canvas-heart"></canvas></div>
+							<div class="text">Contencion</div>
 						</div>		
 
 					</div>
@@ -78,13 +83,8 @@
 			</div>
 
 
+			<div id="mycounter"></div>
 
-			<div class="play_logo"><a href="page2.html?gametype=1"><img width=200px src="img/custom/play_button.png" /></a></div>
-			
-			<div class="container_logos">
-				<div class="tl_logo"><img width=200px src="img/custom/logo-tl-white.svg" /></div>
-				<div class="mp_logo"><img width=200px src="img/custom/mp_logo.png" /></div>
-			</div>
 
 			<canvas id="trailer" width="500" height="50"></canvas>
 			
@@ -95,3 +95,17 @@
 </html>
 
 
+<script>
+	i = 20;
+	onTimer();
+	function onTimer() {
+	  document.getElementById('mycounter').innerHTML = "00:" + i;
+	  i--;
+	  if (i < 0) {
+	    window.location.replace("page2.html?gametype=1");
+	  }
+	  else {
+	    setTimeout(onTimer, 1000);
+	  }
+	}
+</script>

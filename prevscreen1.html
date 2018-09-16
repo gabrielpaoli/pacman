@@ -17,6 +17,7 @@
 
 	</head>
 
+
 <script type="text/javascript">
 	$(document).ready(function() {
 
@@ -26,17 +27,18 @@
 		initInky();
 		initClyde();
 
-		//startTrailer();
-
 	});
 </script>
 
 
-
 	<body>
 		<div id="home_custom">
-			<div class="logo-pacman"><img height="200px" src="img/custom/pacman-logo.png" /></div>
-			<div class="logo-mensajeros"><img height="150px" src="img/custom/mp_logo_vert.png" /></div>
+			<div id="instructionsPrevScreen">
+				<div style="margin-bottom: 0;">Enfrentaste la violencia y la soledad</div>
+				<div>con acceso a tus derechos fundamentales</div>
+				<div>Le agregamos dificultad ?</div>
+			</div>
+
 
 			<div id="presentation">
 				<canvas id="canvas-home-title-pacman"></canvas>
@@ -45,20 +47,13 @@
 				<canvas id="canvas-presentation-inky"></canvas>
 				<canvas id="canvas-presentation-clyde"></canvas>
 
-				<div class="homepage_msg">
-					EL MISMO JUEGO <br> OTROS DESAFIOS, MAS OPORTUNIDADES
-				</div>
+				<div id="mycounter"></div>
+
 
 			</div>
 
-			<div class="play_logo"><a href="prevscreen.html"><img width="200px" src="img/custom/play_button.png" /></a></div>
-			
-			<div class="container_logos">
-				<div class="tl_logo"><img width=200px src="img/custom/logo-tl-white.svg" /></div>
-			</div>
 
-			<!--<canvas id="trailer" width="500" height="50"></canvas>-->
-			
+
 		</div>
 
 	</body>
@@ -66,3 +61,17 @@
 </html>
 
 
+<script>
+	i = 20;
+	onTimer();
+	function onTimer() {
+	  document.getElementById('mycounter').innerHTML = "00:" + i;
+	  i--;
+	  if (i < 0) {
+	    window.location.replace("page3.html");
+	  }
+	  else {
+	    setTimeout(onTimer, 1000);
+	  }
+	}
+</script>

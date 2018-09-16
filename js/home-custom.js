@@ -64,15 +64,15 @@ function initClyde() {
 	drawHelperGhost(ctx, 25, 25, 1, 0, 0, 0);
 }
 
-function initHeart() { 
+function drawHeart() { 
 	canvas = document.getElementById('canvas-heart');
 	canvas.setAttribute('width', '30');
-	canvas.setAttribute('height', '20');
+	canvas.setAttribute('height', '30');
 	if (canvas.getContext) { 
 		ctx = canvas.getContext('2d');
 	}
 
-	var w = 20, h = 20;
+	var w = 30, h = 30;
 
 	ctx.fillStyle = "#ff5050";
 	var d = Math.min(w, h);
@@ -90,7 +90,7 @@ function initHeart() {
 	ctx.fill();
 }
 
-function initSchool() { 
+function drawSchool() { 
 	canvas = document.getElementById('canvas-school');
 	canvas.setAttribute('width', '30');
 	canvas.setAttribute('height', '30');
@@ -282,12 +282,12 @@ function drawMoney(x, y){
 function drawBook(){
 	canvas = document.getElementById('canvas-book');
 	canvas.setAttribute('width', '30');
-	canvas.setAttribute('height', '50');
+	canvas.setAttribute('height', '40');
 	if (canvas.getContext) { 
 		ctx = canvas.getContext('2d');
 	}
 
-	ctx.rect(3,0,25,40);
+	ctx.rect(3,0,25,35);
 	ctx.fillStyle = "white";
 	ctx.fill();
 	ctx.lineWidth = 3;
@@ -295,7 +295,7 @@ function drawBook(){
 	ctx.stroke();
 
 	ctx.fillStyle = "#4d2600";
-	ctx.fillRect(0,3,25,40);
+	ctx.fillRect(0,3,25,35);
 
 	ctx.fillStyle = "white";
 	ctx.fillRect(5,13,15,4);
