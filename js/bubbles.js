@@ -441,59 +441,30 @@ function eraseBubble(t, x, y) {
 
 function createAndDeleteWordIcon(x,y,ctx){
 		if(x === 30 && y === 416){		
-
-			ctx.fillStyle = "yellow";
-			ctx.beginPath();
-			ctx.font = "12px Arial";
-			ctx.fillText("Salud",x - 15,y);
-			ctx.closePath();
-
 			message("Salud");
 			setTimeout(function(){ 
 				clearMessage();
-				ctx.clearRect(x - 30, y - 30, (30 + 1) * 2, (30 + 1) * 2);
 			}, 3000);
 		}
 		
 		if(x === 30 && y === 80){		
-			ctx.fillStyle = "yellow";
-			ctx.beginPath();
-			ctx.font = "12px Arial";
-			ctx.fillText("Comunidad",x - 30,y + 20);
-			ctx.closePath();
-
 			message("Comunidad");
 			setTimeout(function(){ 
 				clearMessage();
-				ctx.clearRect(x - 30, y - 30, (30 + 1) * 2, (30 + 1) * 2);
 			}, 3000);
 		}
 
 		if(x === 518 && y === 80){		
-			ctx.fillStyle = "yellow";
-			ctx.beginPath();
-			ctx.font = "12px Arial";
-			ctx.fillText("Educacion",x - 25,y + 20);
-			ctx.closePath();
-
 			message("Educacion");
 			setTimeout(function(){ 
 				clearMessage();
-				ctx.clearRect(x - 30, y - 30, (30 + 1) * 2, (30 + 1) * 2);
 			}, 3000);
 		}
 
 		if(x === 518 && y === 416){		
-			ctx.fillStyle = "yellow";
-			ctx.beginPath();
-			ctx.font = "12px Arial";
-			ctx.fillText("Contencion",x - 30,y + 5);
-			ctx.closePath();
-
 			message("Contencion");
 			setTimeout(function(){ 
 				clearMessage();
-				ctx.clearRect(x - 30, y - 30, (30 + 1) * 2, (30 + 1) * 2);
 			}, 3000);
 		}
 
