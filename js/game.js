@@ -357,7 +357,7 @@ function score(s, type) {
 	
 	var scoreAfter = (SCORE / 10000) | 0;
 	if (scoreAfter > scoreBefore) { 
-		lifes( +1 );
+		//lifes( +1 );
 	}
 
 	
