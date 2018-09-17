@@ -455,14 +455,14 @@ function createAndDeleteWordIcon(x,y,ctx){
 		}
 
 		if(x === 518 && y === 80){		
-			message("Educacion");
+			message("Educación");
 			setTimeout(function(){ 
 				clearMessage();
 			}, 3000);
 		}
 
 		if(x === 518 && y === 416){		
-			message("Contencion");
+			message("Contención");
 			setTimeout(function(){ 
 				clearMessage();
 			}, 3000);

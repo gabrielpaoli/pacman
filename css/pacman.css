@@ -16,6 +16,12 @@
 	src: url('../css/Quadrit.ttf'); 
 }
 
+
+@font-face { 
+	font-family: 'joystix monospace'; 
+	src: url('../css/joystix monospace.ttf'); 
+}
+
 * { 
 	font-family: Quadrit, sans-serif;
 	font-size: 20px;
@@ -80,7 +86,9 @@ body {
 	font-size: 20px;
 	color: #fff200;
 	text-align: center;
+	font-family: joystix monospace, sans-serif;
 }
+
 #message.red { 
 	color: red;
 }

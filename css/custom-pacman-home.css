@@ -1,5 +1,18 @@
 /* INDEX */
 
+
+@font-face { 
+	font-family: 'joystix monospace'; 
+	src: url('../css/joystix monospace.ttf'); 
+}
+
+* { 
+	font-family: 'joystix monospace', sans-serif;
+	font-size: 20px;
+	color: #fff;
+	line-height: 40px;
+}
+
 #home_custom{
 	flex-wrap: wrap;
   align-items: center;
@@ -42,6 +55,7 @@
 .titulo_mensajeros,
 .titulo_mensajeros span{
 	font-size: 40px;
+	line-height: 60px;
 }
 
 .white{
@@ -85,6 +99,7 @@
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	margin-bottom: 10px;
 }
 
 .container_text_and_item .item{
