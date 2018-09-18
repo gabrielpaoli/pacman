@@ -43,9 +43,7 @@ $(document).ready(function() {
 
 
     if(gp.buttons[12].pressed){
-      console.log("LOGGGGGGGGGGGGG");
-      console.log(gp.buttons);
-
+      console.log("AHII");
       simulateKeyPress(upArrow);
     }
 
@@ -54,11 +52,11 @@ $(document).ready(function() {
     }
 
     if(gp.buttons[14].pressed){
-      simulateKeyPress(leftArrow);
+      simulateKeyPress(rightArrow);
     }
 
     if(gp.buttons[15].pressed){
-      simulateKeyPress(rightArrow);
+      simulateKeyPress(leftArrow);
     }
 
 
