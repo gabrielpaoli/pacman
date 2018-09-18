@@ -17,7 +17,7 @@ $(document).ready(function() {
     var gp = navigator.getGamepads()[0];
 
 
-/*
+
     if(gp.axes[0]){
   		if(gp.axes[0] === 1 && Math.trunc(gp.axes[1]) === 0){
 
@@ -39,11 +39,8 @@ $(document).ready(function() {
 				simulateKeyPress(downArrow);
   		}
   	}
-*/
-
 
     if(gp.buttons[12].pressed){
-      console.log("AHII");
       simulateKeyPress(upArrow);
     }
 
