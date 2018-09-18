@@ -16,6 +16,8 @@ $(document).ready(function() {
   function reportOnGamepad() {
     var gp = navigator.getGamepads()[0];
 
+
+/*
     if(gp.axes[0]){
   		if(gp.axes[0] === 1 && Math.trunc(gp.axes[1]) === 0){
 
@@ -37,6 +39,28 @@ $(document).ready(function() {
 				simulateKeyPress(downArrow);
   		}
   	}
+*/
+
+
+
+    if(gp.buttons[12].pressed){
+      simulateKeyPress(upArrow);
+    }
+
+    if(gp.buttons[13].pressed){
+      simulateKeyPress(downArrow);
+    }
+
+    if(gp.buttons[14].pressed){
+      simulateKeyPress(leftArrow);
+    }
+
+    if(gp.buttons[15].pressed){
+      simulateKeyPress(rightArrow);
+    }
+
+
+
 
     if(gp.buttons[2].pressed){
       var href_list = $('.play_logo a').attr("href");
