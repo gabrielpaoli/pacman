@@ -42,8 +42,10 @@ $(document).ready(function() {
 */
 
 
-
     if(gp.buttons[12].pressed){
+      console.log("LOGGGGGGGGGGGGG");
+      console.log(gp.buttons);
+
       simulateKeyPress(upArrow);
     }
 
