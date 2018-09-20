@@ -444,36 +444,43 @@ function createAndDeleteWordIcon(x,y,ctx){
 			message("Salud");
 			setTimeout(function(){ 
 				clearMessage();
-			}, 3000);
+			}, 2000);
 		}
 		
 		if(x === 30 && y === 80){		
 			message("Comunidad");
 			setTimeout(function(){ 
 				clearMessage();
-			}, 3000);
+			}, 2000);
 		}
 
 		if(x === 518 && y === 80){		
 			message("Educación");
 			setTimeout(function(){ 
 				clearMessage();
-			}, 3000);
+			}, 2000);
 		}
 
 		if(x === 518 && y === 416){		
 			message("Contención");
 			setTimeout(function(){ 
 				clearMessage();
-			}, 3000);
+			}, 2000);
 		}
 
 }
 
 function isSuperBubble(line, bubble) { 
-	if ( (line === 23 || line === 4) && (bubble === 1 || bubble === 26)) { 
-		return true;
+
+	var gametype = getParameterByName('gametype', window.location.href);
+
+	if(gametype === '1'){
+		if ( (line === 23 || line === 4) && (bubble === 1 || bubble === 26)) { 
+			return true;
+		}
+
 	}
+
 	
 	return false;
 }
@@ -514,19 +521,26 @@ function canAddBubble(line, bubble) {
 		return false;
 	} else if ( (line >= 27 && line <= 28) && ( (bubble >= 2 && bubble <= 11) || (bubble >= 16 && bubble <= 25) ) ) { 
 		return false;
-	} else if ((line === 5) && (bubble === 1 || bubble === 2)) { //Remove 2 bubbles
-		return false;
-	} else if ((line === 5) && (bubble === 25 || bubble === 26)) { //Remove 2 bubbles
-		return false;
-	} else if ((line === 22) && (bubble === 1)) { //Remove 1 bubbles
-		return false;
-	} else if ((line === 23) && (bubble === 2)) { //Remove 1 bubbles
-		return false;
-	} else if ((line === 23) && (bubble === 25)) { //Remove 1 bubbles
-		return false;
-	} else if ((line === 22) && (bubble === 26)) { //Remove 1 bubbles
-		return false;
-	}
+	} 
+
+
+
+	var gametype = getParameterByName('gametype', window.location.href);
+	if(gametype === '1'){
+		if ((line === 5) && (bubble === 1 || bubble === 2)) { //Remove 2 bubbles
+			return false;
+		} else if ((line === 5) && (bubble === 25 || bubble === 26)) { //Remove 2 bubbles
+			return false;
+		} else if ((line === 22) && (bubble === 1)) { //Remove 1 bubbles
+			return false;
+		} else if ((line === 23) && (bubble === 2)) { //Remove 1 bubbles
+			return false;
+		} else if ((line === 23) && (bubble === 25)) { //Remove 1 bubbles
+			return false;
+		} else if ((line === 22) && (bubble === 26)) { //Remove 1 bubbles
+			return false;
+		}
+	}	
 	
 	return true;
 }
