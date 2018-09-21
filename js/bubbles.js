@@ -148,10 +148,10 @@ function drawBook(ctx,x,y){
 	ctx.fill();
 
 	ctx.lineWidth = 2;
-	ctx.strokeStyle = "#4d2600";
+	ctx.strokeStyle = "#ed1b24";
 	ctx.stroke();
 
-	ctx.fillStyle = "#4d2600";
+	ctx.fillStyle = "#ed1b24";
 	ctx.fillRect(x + 0,y + 3, 17, 25);
 
 	ctx.fillStyle = "white";

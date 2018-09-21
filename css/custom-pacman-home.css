@@ -64,7 +64,7 @@
 
 #presentation,
 #instructions{
-    min-height: 240px;
+  margin-bottom: 40px;
 }
 
 .homepage_msg{
@@ -76,7 +76,7 @@
 
 .logo-mensajeros{
 	margin-top: -40px;
-	margin-bottom: 60px;
+  margin-bottom: 120px;	
 }
 
 /* HTML 1 & HTML 3 */
@@ -129,9 +129,14 @@
 
 
 .page_four .titulo_mensajeros{
-	color: #2E9AFE
+	color: #2E9AFE;
+  font-size: 25px;
+  line-height: 40px !important;
 }
 
+.supertitle{
+	font-size: 30px !important;
+}
 
 /* MISC */
 

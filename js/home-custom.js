@@ -291,10 +291,10 @@ function drawBook(){
 	ctx.fillStyle = "white";
 	ctx.fill();
 	ctx.lineWidth = 3;
-	ctx.strokeStyle = "#4d2600";
+	ctx.strokeStyle = "#ed1b24";
 	ctx.stroke();
 
-	ctx.fillStyle = "#4d2600";
+	ctx.fillStyle = "#ed1b24";
 	ctx.fillRect(0,3,25,35);
 
 	ctx.fillStyle = "white";
