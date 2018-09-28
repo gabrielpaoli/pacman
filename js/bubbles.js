@@ -57,7 +57,7 @@ function drawBubbles() {
 						drawMedical(ctx,x,y);
 					}
 					if (line === 23 && bubble === 26) { 
-						//drawHeart(ctx,x,y);
+						drawHeart(ctx,x,y);
 					}
 
 					s ++;
@@ -110,30 +110,33 @@ function DrawMoney(ctx,x,y){
 }
 
 function drawHeart(ctx,x,y) { 
-	
-	var x = x - 10;
-	var y = y - 6;
 
-	ctx.beginPath();
+	var x = x - 2;
+	var y = y - 6;;
+  
+  ctx.beginPath();
+  ctx.moveTo(x, y);   
 
-	var w = 20, h = 20;
+  var par1 = 30 / 3.3;
+  var par2 = 50 / 3.3;
+  var par3 = 60 / 3.3;
+  var par4 = 35 / 3.3;
 
-	ctx.fillStyle = "#ff5050";
-	var d = Math.min(w, h);
-	var k = 20;
 
-	
-	ctx.moveTo(20, k + d / 4);
-	ctx.quadraticCurveTo(k, k, k + d / 4, k);
-	ctx.quadraticCurveTo(k + d / 2, k, k + d / 2, k + d / 4);
-	ctx.quadraticCurveTo(k + d / 2, k, k + d * 3/4, k);
-	ctx.quadraticCurveTo(k + d, k, k + d, k + d / 4);
-	ctx.quadraticCurveTo(k + d, k + d / 2, k + d * 3/4, k + d * 3/4);
-	ctx.lineTo(k + d / 2, k + d);
-	ctx.lineTo(k + d / 4, k + d * 3/4);
-	ctx.quadraticCurveTo(k, k + d / 2, k, k + d / 4);
-	ctx.fill();
+	drawBezierCurve(x, y, x, y - par1, x - par2, y - par1, x - par2, y);
+	drawBezierCurve(x - par2, y, x - par2, y + par1, x, y + par4, x, y + par3);
+	drawBezierCurve(x, y + par3, x, y + par4, x + par2, y + par1, x + par2, y);
+	drawBezierCurve(x + par2, y, x + par2, y - par1, x, y - par1, x, y);
+
+	function drawBezierCurve(x0, y0, x1, y1, x2, y2, x3, y3) {
+    ctx.bezierCurveTo(x1, y1, x2, y2, x3, y3);
+	}
+
+  ctx.fillStyle = "#ff5050"; 
+  ctx.fill(); 
+
 	ctx.closePath();
+
 }
 
 

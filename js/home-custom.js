@@ -72,22 +72,31 @@ function drawHeart() {
 		ctx = canvas.getContext('2d');
 	}
 
-	var w = 30, h = 30;
+	var x = 15;
+	var y = 10;
 
-	ctx.fillStyle = "#ff5050";
-	var d = Math.min(w, h);
-	var k = 0;
+	ctx.beginPath();
+	ctx.moveTo(x, y);   
 
-	ctx.moveTo(k, k + d / 4);
-	ctx.quadraticCurveTo(k, k, k + d / 4, k);
-	ctx.quadraticCurveTo(k + d / 2, k, k + d / 2, k + d / 4);
-	ctx.quadraticCurveTo(k + d / 2, k, k + d * 3/4, k);
-	ctx.quadraticCurveTo(k + d, k, k + d, k + d / 4);
-	ctx.quadraticCurveTo(k + d, k + d / 2, k + d * 3/4, k + d * 3/4);
-	ctx.lineTo(k + d / 2, k + d);
-	ctx.lineTo(k + d / 4, k + d * 3/4);
-	ctx.quadraticCurveTo(k, k + d / 2, k, k + d / 4);
-	ctx.fill();
+	var par1 = 30 / 3.2;
+	var par2 = 50 / 3.2;
+	var par3 = 60 / 3.2;
+	var par4 = 35 / 3.2;
+
+
+	drawBezierCurveHome(x, y, x, y - par1, x - par2, y - par1, x - par2, y);
+	drawBezierCurveHome(x - par2, y, x - par2, y + par1, x, y + par4, x, y + par3);
+	drawBezierCurveHome(x, y + par3, x, y + par4, x + par2, y + par1, x + par2, y);
+	drawBezierCurveHome(x + par2, y, x + par2, y - par1, x, y - par1, x, y);
+
+	function drawBezierCurveHome(x0, y0, x1, y1, x2, y2, x3, y3) {
+    ctx.bezierCurveTo(x1, y1, x2, y2, x3, y3);
+	}
+
+  ctx.fillStyle = "#ff5050"; 
+  ctx.fill(); 
+
+	ctx.closePath();
 }
 
 function drawSchool() { 
